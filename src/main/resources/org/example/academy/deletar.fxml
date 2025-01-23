@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visao.DeletarController">
+    <children>
+        <!-- Painel centralizado com fundo laranja -->
+        <Pane layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: orange; -fx-background-radius: 10;">
+            <children>
+                <!-- Título e descrições centralizadas -->
+                <Label layoutX="150.0" layoutY="30.0" text="Mash fit!" textFill="WHITE">
+                    <font>
+                        <Font name="Gabriola" size="40.0" />
+                    </font>
+                </Label>
+                <Label layoutX="200.0" layoutY="80.0" text="Bem vindo" textFill="WHITE">
+                    <font>
+                        <Font name="Gabriola" size="25.0" />
+                    </font>
+                </Label>
+                <Label layoutX="150.0" layoutY="130.0" text="Deletar conta" textFill="WHITE">
+                    <font>
+                        <Font name="Gabriola" size="25.0" />
+                    </font>
+                </Label>
+                <!-- Campos de entrada e botão de ação centralizados -->
+                <TextField fx:id="emailField" layoutX="150.0" layoutY="170.0" prefWidth="200.0" promptText="E-mail"/>
+                <TextField fx:id="matriculaField" layoutX="150.0" layoutY="210.0" prefWidth="200.0" promptText="Matrícula"/>
+                <Button fx:id="deleteButton" layoutX="200.0" layoutY="260.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #000000;" text="Deletar" onAction="#handleDeleteButton" textFill="WHITE"/>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
