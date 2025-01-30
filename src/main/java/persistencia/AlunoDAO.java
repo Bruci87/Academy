@@ -8,7 +8,7 @@ import java.util.List;
 public class AlunoDAO {
     private Connection conexao;
 
-    public AlunoDAO() {
+    public AlunoDAO() throws SQLException {
         conexao = Conexao.getConexao();
     }
 

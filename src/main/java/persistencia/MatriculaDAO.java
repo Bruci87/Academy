@@ -9,7 +9,7 @@ import java.util.List;
 public class MatriculaDAO {
     private Connection conexao;
 
-    public MatriculaDAO() {
+    public MatriculaDAO() throws SQLException {
         conexao = Conexao.getConexao();
     }
 

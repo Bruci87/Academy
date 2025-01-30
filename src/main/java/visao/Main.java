@@ -1,24 +1,20 @@
 package visao;
 
-import org.example.academy.HelloApplication;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-//import database.DatabaseInit;
 
 public class Main extends Application {
-
     @Override
     public void start(Stage primaryStage) {
         try {
-           // DatabaseInit.init();
-            // Carrega a interface inicial
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
+            // Carrega a interface inicial do menu
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/academy/menu.fxml"));
             Parent root = fxmlLoader.load();
 
-            primaryStage.setTitle("Academy");
+            primaryStage.setTitle("Academia Smash Fitness - Menu");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (Exception e) {

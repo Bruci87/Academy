@@ -1,14 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="713.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashBoardController">
+    <children>
+        <Pane layoutX="29.0" layoutY="39.0" prefHeight="539.0" prefWidth="328.0" style="-fx-border-color: white;">
+            <children>
+                <Label layoutX="121.0" layoutY="14.0" text="Planos" textFill="WHITE">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Label>
+                <Button fx:id="excluirPlanoButton" layoutX="75.0" layoutY="453.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="178.0" style="-fx-background-color: red;" text="Excluir plano" textFill="WHITE">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="editarPlanoButton" layoutX="75.0" layoutY="291.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="178.0" style="-fx-background-color: blue;" text="Editar plano" textFill="#fcfcfc">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="meuPlanoButton" layoutX="75.0" layoutY="138.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="178.0" style="-fx-background-color: blue;" text="Meu plano" textFill="WHITE">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+        <Label layoutX="374.0" layoutY="164.0" text="Personal Trainer: Sessões adicionais para " textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="375.0" layoutY="192.0" text="treino personalizado e acompanhamento " textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="373.0" layoutY="223.0" text="de perto." textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="372.0" layoutY="286.0" text="Mensal: Taxa fixa mensal para experimentar " textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="372.0" layoutY="315.0" text="a academia." textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="369.0" layoutY="394.0" text="Trimestral/Semestral: Pague por 3 ou 6 meses " textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="370.0" layoutY="425.0" text="com desconto." textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="371.0" layoutY="505.0" text="Plano Familiar: Vários membros da família, com " textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="369.0" layoutY="536.0" text="desconto por pessoa." textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="392.0" layoutY="57.0" text="Quais meus beneficios" textFill="WHITE">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
+        <Accordion />
+    </children>
 </AnchorPane>

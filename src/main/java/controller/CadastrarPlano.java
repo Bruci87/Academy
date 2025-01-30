@@ -1,10 +1,14 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ExibirPlanosController {
+public class CadastrarPlano {
 
     @FXML
     private TextField matriculaField;
@@ -24,8 +28,12 @@ public class ExibirPlanosController {
     private Button adicionarButton;
 
     @FXML
+    private Button verPlanoButton;
+
+    @FXML
     public void initialize() {
         adicionarButton.setOnAction(event -> adicionarPlano());
+        verPlanoButton.setOnAction(event -> verPlano());
     }
 
     private void adicionarPlano() {
@@ -49,9 +57,9 @@ public class ExibirPlanosController {
             return;
         }
 
-        String url = "jdbc:mysql://localhost:3306/poo"; // Substitua pelo URL do seu banco de dados
-        String user = "root"; // Substitua pelo seu usuário do banco de dados
-        String password = "Redst@ne87"; // Substitua pela sua senha do banco de dados
+        String url = "jdbc:mysql://localhost:3306/poo";
+        String user = "root";
+        String password = "Redst@ne87";
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
 
@@ -85,6 +93,31 @@ public class ExibirPlanosController {
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert("Erro", "Não foi possível associar o plano à matrícula. Por favor, tente novamente.");
+        }
+    }
+
+    private void verPlano() {
+        String matricula = matriculaField.getText().trim();
+        if (matricula.isEmpty()) {
+            showAlert("Erro", "Digite a matrícula para ver os planos.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/academy/exibirPlanos.fxml"));
+            AnchorPane root = loader.load();
+
+            // Passa a matrícula para o controlador ExibirPlano
+            ExibirPlano controller = loader.getController();
+            controller.setMatricula(matricula);
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Erro", "Não foi possível carregar a tela de exibição de planos.");
         }
     }
 

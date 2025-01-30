@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="616.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarController">
+    <children>
+        <Pane layoutX="189.0" layoutY="28.0" prefHeight="358.0" prefWidth="253.0" style="-fx-border-color: white;">
+            <children>
+                <TextField fx:id="nomeField" layoutX="52.0" layoutY="50.0" promptText="Nome Completo" />
+                <TextField fx:id="emailField" layoutX="52.0" layoutY="111.0" promptText="E-mail" />
+                <TextField fx:id="matriculaField" layoutX="52.0" layoutY="172.0" promptText="Matrícula" />
+                <Button fx:id="botaologin" layoutX="65.0" layoutY="295.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: blue;" text="Cadastrar" textFill="WHITE" onAction="#handleRegisterButton">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

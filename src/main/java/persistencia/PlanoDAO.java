@@ -1,93 +1,56 @@
 package persistencia;
 
-import dominio.Plano;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class PlanoDAO {
+
     private Connection conexao;
 
-    public PlanoDAO() {
-        conexao = Conexao.getConexao();
+    public PlanoDAO() throws SQLException {
+        // Configuração da conexão com o banco de dados
+        String url = "jdbc:mysql://localhost:3306/poo";
+        String user = "root";
+        String password = "Redst@ne87";
+        this.conexao = DriverManager.getConnection(url, user, password);
     }
 
-    public void salvar(Plano plano) {
-        String sql = "INSERT INTO plano (codigo, nome, descricao, valor, duracaoMeses) VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            stmt.setInt(1, plano.getCodigo());
-            stmt.setString(2, plano.getNome());
-            stmt.setString(3, plano.getDescricao());
-            stmt.setDouble(4, plano.getValor());
-            stmt.setInt(5, plano.getDuracaoMeses());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    public boolean deletar(int idPlano) {
+        String deleteUsuarioPlanos = "DELETE FROM usuario_planos WHERE plano_id = ?";
+        String deletePlano = "DELETE FROM plano WHERE ID_plano = ?";
 
-    public void atualizar(Plano plano) {
-        String sql = "UPDATE plano SET nome = ?, descricao = ?, valor = ?, duracaoMeses = ? WHERE codigo = ?";
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            stmt.setString(1, plano.getNome());
-            stmt.setString(2, plano.getDescricao());
-            stmt.setDouble(3, plano.getValor());
-            stmt.setInt(4, plano.getDuracaoMeses());
-            stmt.setInt(5, plano.getCodigo());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+        try {
+            conexao.setAutoCommit(false);
 
-    public void deletar(int codigo) {
-        String sql = "DELETE FROM plano WHERE codigo = ?";
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            stmt.setInt(1, codigo);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+            // Excluir registros dependentes primeiro
+            try (PreparedStatement stmt1 = conexao.prepareStatement(deleteUsuarioPlanos)) {
+                stmt1.setInt(1, idPlano);
+                stmt1.executeUpdate();
+            }
 
-    public Plano buscarPorCodigo(int codigo) {
-        String sql = "SELECT * FROM plano WHERE codigo = ?";
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            stmt.setInt(1, codigo);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return new Plano(
-                        rs.getInt("codigo"),
-                        rs.getString("nome"),
-                        rs.getString("descricao"),
-                        rs.getDouble("valor"),
-                        rs.getInt("duracaoMeses")
-                );
+            // Excluir o plano
+            try (PreparedStatement stmt2 = conexao.prepareStatement(deletePlano)) {
+                stmt2.setInt(1, idPlano);
+                int rowsAffected = stmt2.executeUpdate();
+                conexao.commit();
+                return rowsAffected > 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        return null;
-    }
-
-    public List<Plano> buscarTodos() {
-        List<Plano> planos = new ArrayList<>();
-        String sql = "SELECT * FROM plano";
-        try (Statement stmt = conexao.createStatement()) {
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                Plano plano = new Plano(
-                        rs.getInt("codigo"),
-                        rs.getString("nome"),
-                        rs.getString("descricao"),
-                        rs.getDouble("valor"),
-                        rs.getInt("duracaoMeses")
-                );
-                planos.add(plano);
+            try {
+                conexao.rollback();
+            } catch (SQLException rollbackException) {
+                rollbackException.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexao.setAutoCommit(true);
+            } catch (SQLException autoCommitException) {
+                autoCommitException.printStackTrace();
+            }
         }
-        return planos;
     }
 }

@@ -41,7 +41,7 @@ public class LoginController {
         String user = "root"; // Substitua pelo seu usuário do banco
         String password = "Redst@ne87"; // Substitua pela sua senha do banco
 
-        String query = "SELECT * FROM usuarios WHERE email = ? AND senha = ?";
+        String query = "SELECT * FROM usuarios WHERE email = ? AND matricula = ?";
 
         try (Connection connection = DriverManager.getConnection(url, user, password);
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -67,7 +67,7 @@ public class LoginController {
 
     private void loadDashboardScreen() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/academy/dashboard.fxml")); // Substitua pelo caminho da próxima tela
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/academy/dashboard.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -76,6 +76,20 @@ public class LoginController {
         } catch (IOException e) {
             e.printStackTrace();
             showAlert("Erro", "Não foi possível carregar a tela do dashboard.");
+        }
+    }
+    @FXML
+    private void handleCadastroHyperlink2() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/academy/cadastrar.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) emailField.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Cadastrar Usuário");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Erro", "Não foi possível carregar a tela de cadastro.");
         }
     }
 

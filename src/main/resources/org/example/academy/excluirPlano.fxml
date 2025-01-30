@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="665.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExcluirPlanoController">
+    <children>
+        <Pane layoutX="154.0" layoutY="27.0" prefHeight="436.0" prefWidth="358.0" style="-fx-border-color: white;">
+            <children>
+                <TextField fx:id="matriculaField" layoutX="104.0" layoutY="144.0" />
+                <TextField fx:id="idPlanoField" layoutX="105.0" layoutY="272.0" />
+                <Label layoutX="122.0" layoutY="26.0" text="Excluir plano" textFill="WHITE">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Button fx:id="confirmarExclusaoButton" layoutX="89.0" layoutY="351.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="201.0" style="-fx-background-color: red;" text="Excluir" textFill="WHITE" />
+                <Label fx:id="resultadoLabel" layoutX="89.0" layoutY="400.0" textFill="WHITE"/>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>
